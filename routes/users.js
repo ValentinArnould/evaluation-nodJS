@@ -10,42 +10,42 @@ router.get("/", function(req, res, next) {
 router.post("/", function(req, res, next) {
   var telephones = [];
 
-    if (typeof req.body.telephoneName === "object") {
-      Object.keys(req.body.telephoneName).forEach(el => {
-        telephones.push({
-          nom: req.body.telephoneName[el],
-          telephone: req.body.telephoneValue[el]
-        });
-      });
-    } else {
+  if (typeof req.body.telephoneName === "object") {
+    Object.keys(req.body.telephoneName).forEach(el => {
       telephones.push({
-        nom: req.body.telephoneName,
-        telephone: req.body.telephoneValue
+        nom: req.body.telephoneName[el],
+        telephone: req.body.telephoneValue[el]
       });
-    }
+    });
+  } else {
+    telephones.push({
+      nom: req.body.telephoneName,
+      telephone: req.body.telephoneValue
+    });
+  }
 
-    var emails = [];
+  var emails = [];
 
-    if (typeof req.body.emailName === "object") {
-      Object.keys(req.body.emailName).forEach(el => {
-        emails.push({
-          nom: req.body.emailName[el],
-          email: req.body.emailValue[el]
-        });
-      });
-    } else {
+  if (typeof req.body.emailName === "object") {
+    Object.keys(req.body.emailName).forEach(el => {
       emails.push({
-        nom: req.body.emailName,
-        email: req.body.emailValue
+        nom: req.body.emailName[el],
+        email: req.body.emailValue[el]
       });
-    }
-    
-  var avatar = req.body.avatar == "" ? "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.eurogeosurveys.org%2Fwp-content%2Fuploads%2F2014%2F02%2Fdefault_profile_pic.jpg&f=1&nofb=1" : req.body.avatar;
-  
-  var entry = mongo.modele();
+    });
+  } else {
+    emails.push({
+      nom: req.body.emailName,
+      email: req.body.emailValue
+    });
+  }
 
+  var avatar = req.body.avatar == "" ? "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.eurogeosurveys.org%2Fwp-content%2Fuploads%2F2014%2F02%2Fdefault_profile_pic.jpg&f=1&nofb=1" : req.body.avatar;
+
+  var entry = mongo.modele();
   if (req.body._id != "newOne") {
-    entry.findOne({_id:req.body._id}, (err,contact) =>{
+    entry.findById(req.body.id, (err, contact) => {
+      if (err) throw err;
       contact.avatar = avatar;
       contact.nom = req.body.nom;
       contact.prenom = req.body.prenom;
@@ -58,8 +58,9 @@ router.post("/", function(req, res, next) {
         res.redirect("/");
       });
     });
+    //res.redirect("/");
   } else {
-
+    console.log("heypls");
     var newContact = {
       avatar: avatar,
       nom: req.body.nom,

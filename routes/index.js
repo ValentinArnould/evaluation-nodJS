@@ -44,4 +44,14 @@ router.get("/contact/:id", function(req, res, next) {
   });
 });
 
+router.get("/contacts", function(req, res, next) {
+  var ctNbr = 0;
+  var lastCts = mongo.modele();
+  lastCts.find({}, (err, users) => {
+    console.log(users);
+    ctNbr = users.length;
+    res.render("contacts", { contactNbr: ctNbr, Contacts: users });
+  });
+});
+
 module.exports = router;

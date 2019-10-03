@@ -37,8 +37,9 @@ router.post("/", function(req, res, next) {
     });
   }
 
+  var avatar = req.body.avatar == "" ? "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.eurogeosurveys.org%2Fwp-content%2Fuploads%2F2014%2F02%2Fdefault_profile_pic.jpg&f=1&nofb=1" : req.body.avatar;
   var newContact = {
-    avatar: req.body.avatar,
+    avatar: avatar,
     nom: req.body.nom,
     prenom: req.body.prenom,
     description: req.body.description,

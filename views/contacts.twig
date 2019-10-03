@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div style="
+  width: 80%;
+	height: 80%;
+	background-color: #EEE;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+  text-align:center;
+	margin: auto;">
+    
+    <div name="titre">
+      <h1 style="font-size:25pt">
+      Contacts</h1>
+    </div>
+    <div name="contactNumber">
+      <h2>{{contactNbr}} Contacts</h2>
+    </div>
+    <div name="lastContacts">
+      {% for key,value in Contacts %}
+        <div>
+          <a href="/contact/{{value._id}}">
+          <span style="display:inline"><img src="{{value.avatar}}"
+          style="width:75px;height:75px;"></span>
+          <span style="display:inline">{{value.nom}} {{value.prenom}}</span>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <br>
+    <div name="retour">
+        <a href="/"><button>retour</button></a>
+    </div>
+
+  </div>
+{% endblock %}

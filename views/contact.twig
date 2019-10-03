@@ -31,11 +31,13 @@
             <div name="contactTelephones">
                 {% for key,value in user.telephones %}
                     <span>{{value.nom}} : {{value.telephone}}</span>
+                    <br>
                 {% endfor %}
             </div>
             <div name="contactEmails">
                 {% for key,value in user.emails %}
                     <span>{{value.nom}} : {{value.email}}</span>
+                    <br>
                 {% endfor %}
             </div>
             <a href="/">retour</a>

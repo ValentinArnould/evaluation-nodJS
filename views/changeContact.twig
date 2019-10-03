@@ -15,6 +15,7 @@
 	margin: auto;">
 
     <form method="POST" action="/users">
+        <input type="hidden" name="id" value="{{user._id}}" style="">
         <label for="avatar">Avatar</label>
         <input name="avatar" value="{{user.avatar}}">
         <br>

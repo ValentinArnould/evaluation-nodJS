@@ -16,7 +16,7 @@ router.get("/", function(req, res, next) {
 router.get("/changeContact/:id", function(req, res, next) {
   if (req.params.id != "newOne") {
     var lastCts = mongo.modele();
-    lastCts.findOne({}, (err, user) => {
+    lastCts.findOne({_id: req.params.id}, (err, user) => {
       console.log(user);
 
       res.render("changeContact", { user: user });
@@ -24,6 +24,7 @@ router.get("/changeContact/:id", function(req, res, next) {
   } else {
     res.render("changeContact", {
       user: {
+        _id: "newOne",
         avatar: "",
         nom: "",
         prenom: "",

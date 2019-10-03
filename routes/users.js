@@ -53,7 +53,6 @@ router.post("/", function(req, res, next) {
       telephones: telephones,
       emails: emails
     };
-    console.log(newContact);
     var contact = new entry(newContact);
     contact.save().then(() => {
       console.log("contact crée");

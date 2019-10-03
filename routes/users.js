@@ -43,24 +43,8 @@ router.post("/", function(req, res, next) {
   var avatar = req.body.avatar == "" ? "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.eurogeosurveys.org%2Fwp-content%2Fuploads%2F2014%2F02%2Fdefault_profile_pic.jpg&f=1&nofb=1" : req.body.avatar;
 
   var entry = mongo.modele();
-  if (req.body._id != "newOne") {
-    entry.findById(req.body.id, (err, contact) => {
-      if (err) throw err;
-      contact.avatar = avatar;
-      contact.nom = req.body.nom;
-      contact.prenom = req.body.prenom;
-      contact.description = req.body.description;
-      contact.telephones = telephones;
-      contact.emails = emails;
-      console.log("test " + contact._id);
-      contact.save().then(() => {
-        console.log("contact modifié");
-        res.redirect("/");
-      });
-    });
-    //res.redirect("/");
-  } else {
-    console.log("heypls");
+  if (req.body.id == "newOne") {
+
     var newContact = {
       avatar: avatar,
       nom: req.body.nom,
@@ -74,6 +58,22 @@ router.post("/", function(req, res, next) {
     contact.save().then(() => {
       console.log("contact crée");
       res.redirect("/");
+    });
+    //res.redirect("/");
+  } else {
+    entry.findById(req.body.id, (err, contact) => {
+      if (err) throw err;
+      contact.avatar = avatar;
+      contact.nom = req.body.nom;
+      contact.prenom = req.body.prenom;
+      contact.description = req.body.description;
+      contact.telephones = telephones;
+      contact.emails = emails;
+      console.log("test " + contact._id);
+      contact.save().then(() => {
+        console.log("contact modifié");
+        res.redirect("/");
+      });
     });
   }
 });

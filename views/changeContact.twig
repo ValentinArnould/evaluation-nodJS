@@ -1,0 +1,91 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div style="
+  width: 80%;
+	height: 80%;
+	background-color: #EEE;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+  text-align:center;
+	margin: auto;">
+
+    <form method="POST" action="/users">
+        <label for="avatar">Avatar</label>
+        <input name="avatar" value="{{user.avatar}}">
+        <br>
+        <label for="nom">Nom</label>
+        <input name="nom" value="{{user.nom}}">
+        <br>
+        <label for="prenom">Prénom</label>
+        <input name="prenom" value="{{user.prenom}}">
+        <br>
+        <label for="description">Description</label>
+        <input name="description" value="{{user.description}}">
+        <br>
+        <label for="listTelephones">liste de Téléphones</label>
+        <div name="listTelephones">
+            {% for key,value in user.telephones %}
+                <div>
+                <label for="telephoneName[]">Téléphone</label>
+                <input name="telephoneName[]" value="{{value.nom}}">
+                <br>
+                <label for="telephoneValue[]">Numéro</label>
+                <input name="telephoneValue[]" value="{{value.telephone}}">
+                <br>
+                <br>
+                </div>
+            {% endfor %}
+        </div>
+        <button onclick="addTelephone()">Ajouter</button>
+        <br>
+        <label for="listEmails">liste d'Emails</label>
+        <div name="listEmails">
+            {% for key,value in user.emails %}
+                <div>
+                <label for="emailName[]">Email</label>
+                <input name="emailName[]" value="{{value.nom}}">
+                <br>
+                <label for="emailValue[]">Adresse</label>
+                <input name="emailValue[]" value="{{value.email}}">
+                <br>
+                </br>
+                </div>
+            {% endfor %}
+        </div>
+        <button onclick="addEmail()">Ajouter</button>
+        <br>
+        <input type="submit" name="envoyer">
+    </form>
+
+    </div>
+    <script>
+        function addTelephone() {
+            var nbr = document.getElementsByClass("listTelephones").children.length;
+            document.getElementsByClass("listTelephones").
+            append(`
+                <div>
+                <input name="telephoneName[`+nbr+`]" value="">
+                <br>
+                <input name="telephoneValue[`+nbr+`]" value="">
+                <br>
+                </div>`);
+        }
+        function addEmail() {
+            var nbr = document.getElementsByClass("listEmails").children.length;
+            document.getElementsByClass("listEmails").
+            append(`
+                <div>
+                <input name="emailName[`+nbr+`]" value="">
+                <br>
+                <input name="emailValue[`+nbr+`]" value="">
+                <br>
+                </div>`);
+        }
+    </script>
+
+{% endblock %}

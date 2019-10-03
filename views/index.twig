@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div style="
+  width: 80%;
+	height: 80%;
+	background-color: #EEE;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+  text-align:center;
+	margin: auto;">
+    
+    <div name="titre">
+      <h1 style="font-size:25pt">
+      Contacts</h1>
+    </div>
+    <div name="contactNumber">
+      <h2>{{contactNbr}} Contacts</h2>
+    </div>
+    <div name="lastContacts">
+      <h3>Contacts récemment enregistrés</h3>
+      {% for key,value in lastContacts %}
+        {% if key < 3%}
+        <div>
+          <span style="display:inline"><img src="{{value.avatar}}"
+          style="width:75px;height:75px;"></span>
+          <span style="display:inline">{{value.nom}} {{value.prenom}}</span>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div name="addContact">
+      <a href="/changeContact"><button>Ajouter un contact</button></a>
+    </div>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+gestionnaire d'annuaire
+
+page d'accueil :
+    le nombre de contacts
+    les 3 derniers contacts ajoutés
+    pouvoir créer un contact
+
+page de contacts :
+    liste tous les contacts dans l'ordre alphabétique
+
+page dédiée au contact :
+    donne les infos :
+    avatar
+    nom / prénom
+    description
+    numéros de tél (plusieurs possible)
+    emails (plusieurs possible)
+    
+    pouvoir modifier ses infos
+    pouvoir supprimer le contact
+
+    {
+        avatar: "",
+        nom: "",
+        prenom: "",
+        description: "",
+        telephones : [
+            {nom: "", telephone: ""}
+        ],
+        emails: [
+            {nom: "", email: ""}
+        ]
+    }

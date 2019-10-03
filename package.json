@@ -1,0 +1,23 @@
+{
+  "name": "evaluation-nodejs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -e js,scss,twig,json -L ./bin/www",
+    "dev": "DEBUG=nodeJS:* npm start"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "crypto-js": "^3.1.9-1",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.16.2",
+    "http-errors": "~1.6.3",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.3",
+    "morgan": "~1.9.1",
+    "node-sass-middleware": "^0.11.0",
+    "nodemon": "^1.19.3",
+    "twig": "~0.10.3"
+  }
+}

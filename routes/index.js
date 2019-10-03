@@ -25,4 +25,14 @@ router.get('/changeContact', function(req, res, next) {
   });
 });
 
+router.get('/contact/:id', function(req, res, next) {
+  var lastCts = mongo.modele();
+  lastCts.findOne({_id: req.params.id}, (err,user) => {
+
+    console.log(user);
+    
+      res.render('contact', {user: user});
+  });
+});
+
 module.exports = router;

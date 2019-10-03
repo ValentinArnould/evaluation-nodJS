@@ -26,9 +26,11 @@
       {% for key,value in lastContacts %}
         {% if key < 3%}
         <div>
+          <a href="/contact/{{value._id}}">
           <span style="display:inline"><img src="{{value.avatar}}"
           style="width:75px;height:75px;"></span>
           <span style="display:inline">{{value.nom}} {{value.prenom}}</span>
+          </a>
         </div>
         {% endif %}
       {% endfor %}

@@ -1,0 +1,44 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div style="
+  width: 80%;
+	height: 80%;
+	background-color: #EEE;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+  text-align:center;
+	margin: auto;">
+
+        <div name="contactInformations">
+            <div name="contactAvatar">
+                <img src="{{user.avatar}}" 
+                style="max-width:500px;">
+            </div>
+            <div name="contactNom">
+                <span>{{user.nom}}</span>
+            </div>
+            <div name="contactPrenom">
+                <span>{{user.prenom}}</span>
+            </div>
+            <div name="contactDescription">
+                <span>{{user.description}}</span>
+            </div>
+            <div name="contactTelephones">
+                {% for key,value in user.telephones %}
+                    <span>{{value.nom}} : {{value.telephone}}</span>
+                {% endfor %}
+            </div>
+            <div name="contactEmails">
+                {% for key,value in user.emails %}
+                    <span>{{value.nom}} : {{value.email}}</span>
+                {% endfor %}
+            </div>
+            <a href="/">retour</a>
+        </div>
+    </div>
+{% endblock %}
